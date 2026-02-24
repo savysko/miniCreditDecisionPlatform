@@ -17,4 +17,4 @@ Input Text
     Fill Text    ${locator}    ${value}
 
 Capture Checkpoint Screenshot
-    Capture Page Screenshot
+    Take Screenshot
