@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Submit Loan</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<h1>Submit Loan Application</h1>
+
+<div class="card">
+    <label>Customer ID:</label>
+    <input id="customer-id" type="text" />
+
+    <label>Loan Amount:</label>
+    <input id="loan-amount" type="number" />
+
+    <label>Duration (Months):</label>
+    <input id="loan-duration" type="number" />
+
+    <button id="submit-loan-btn" onclick="submitLoan()">Submit</button>
+</div>
+
+<div id="loan-result" class="result-box"></div>
+
+<button onclick="goHome()">Back to Dashboard</button>
+
+<script src="app.js"></script>
+</body>
+</html>
