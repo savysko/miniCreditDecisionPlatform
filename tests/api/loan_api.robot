@@ -1,16 +1,23 @@
 *** Settings ***
-Resource    ../resources/api_keywords.robot
+Resource    ../resources/common/api_session_management.robot
+Resource    ../resources/business/loan_api_business.robot
+Resource    ../resources/config/variables.robot
+
+Suite Setup     Start API Session
+Suite Teardown  Close API Session
 
 *** Test Cases ***
-Loan Submission API Test
-    [Tags]    api    regression
-    Create API Session
-    ${loan}=    Submit Loan Via API    ${CUSTOMER_ID}    ${LOAN_AMOUNT}    ${LOAN_DURATION}
-    Should Not Be Empty    ${loan["loanId"]}
+API Loan Submission
+    [Tags]    api    smoke
+    ${loan_id}=    Submit Loan And Validate
+    ...    ${CUSTOMER_ID}
+    ...    ${LOAN_AMOUNT}
+    ...    ${LOAN_DURATION}
 
-Decision Retrieval API Test
+API Decision Retrieval
     [Tags]    api    regression
-    Create API Session
-    ${loan}=    Submit Loan Via API    ${CUSTOMER_ID}    ${LOAN_AMOUNT}    ${LOAN_DURATION}
-    ${decision}=    Get Decision Via API    ${loan["loanId"]}
-    Should Contain    ${decision["decision"]}    REVIEW
+    ${loan_id}=    Submit Loan And Validate
+    ...    ${CUSTOMER_ID}
+    ...    ${LOAN_AMOUNT}
+    ...    ${LOAN_DURATION}
+    Retrieve Decision And Validate    ${loan_id}
